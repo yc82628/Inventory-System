@@ -71,10 +71,11 @@ void Store::updateItem(char itemName[], int pid, int total, float price)
  if (item == NULL)
  {
   cout << "\n\t\t ITEM NOT FOUND\n";
-  return;
-  item->copies += total;
-  item->unitPrice += price;
+  return; // This return statement prevents the code below from ever running.
  }
+ item->copies += total;
+ item->unitPrice += price;
+ cout << "\n\t\t ITEM UPDATED SUCCESFULLY\n";
 }
 
 int main() 
@@ -96,7 +97,8 @@ int main()
   cin >> option;
   switch (option)
   {
-  case 1: cin.getline(name, 80);
+  case 1: 
+    cin.ignore(); 
     cout << "\n\t\t\t ENTER NAME OF ITEM : ";
     cin.getline(name, 80);
     cout << "\n\t\t\t COMPANY: ";
@@ -109,13 +111,16 @@ int main()
     cin >> unit_price;
     sto.insertItem(name, company, product_id, copies, unit_price);
     break;
-  case 2: cin.getline(name, 80);
+  case 2:
+    cin.ignore();
     cout << "\n\t\t\t ENTER NAME OF ITEM : ";
     cin.getline(name, 80);
     cout << "\n\t\t\t ENTER PRODUCT ID : ";
     cin >> product_id;
     sto.deleteItem(name, product_id);
-  case 3: cin.getline(name, 80);
+    break; 
+  case 3:
+    cin.ignore();
     cout << "\n\t\t\t ENTER NAME OF ITEM : ";
     cin.getline(name, 80);
     cout << "\n\t\t\t ENTER PRODUCT ID : ";
@@ -133,8 +138,9 @@ int main()
     else 
      cout << "\n\t\t\t ITEM NOT FOUND";
     break;
-  case 4: cout << "\n\t\t\t ENTER DETAILS FOR UPDATE : ";
-    cin.getline(name, 80);
+  case 4:
+    cin.ignore();
+    cout << "\n\t\t\t ENTER DETAILS FOR UPDATE : ";
     cout << "\n\t\t\t ENTER NAME OF ITEM : ";
     cin.getline(name, 80);
     cout << "\n\t\t\t ENTER PRODUCT ID : ";
